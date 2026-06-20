@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dmrkm8hf1oqtt"]
+
+[ext_resource type="PackedScene" uid="uid://dehrjnk5atkc8" path="res://controls/control_slot.tscn" id="1_5g6xu"]
+[ext_resource type="Script" uid="uid://1y6lr8whhpm7" path="res://controls/scripts/control_ui.gd" id="1_egfif"]
+
+[node name="ControlUi" type="MarginContainer" unique_id=1669422476]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -44.0
+offset_right = 64.0
+grow_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("1_egfif")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=598653962]
+layout_mode = 2
+alignment = 1
+
+[node name="ControlSlotUp" parent="VBoxContainer" unique_id=527469143 instance=ExtResource("1_5g6xu")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+initial_action = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1068889838]
+layout_mode = 2
+
+[node name="ControlSlotLeft" parent="VBoxContainer/HBoxContainer" unique_id=368205988 instance=ExtResource("1_5g6xu")]
+unique_name_in_owner = true
+layout_mode = 2
+initial_action = 3
+
+[node name="ControlSlotDown" parent="VBoxContainer/HBoxContainer" unique_id=2121747674 instance=ExtResource("1_5g6xu")]
+unique_name_in_owner = true
+layout_mode = 2
+initial_action = 2
+
+[node name="ControlSlotRight" parent="VBoxContainer/HBoxContainer" unique_id=1061131561 instance=ExtResource("1_5g6xu")]
+unique_name_in_owner = true
+layout_mode = 2
+initial_action = 4

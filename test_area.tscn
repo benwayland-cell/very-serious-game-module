@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dayptjko6xi8e"]
+
+[ext_resource type="PackedScene" uid="uid://ci51e2m6thx53" path="res://player/player.tscn" id="1_64fjj"]
+[ext_resource type="PackedScene" uid="uid://dmrkm8hf1oqtt" path="res://controls/control_ui.tscn" id="2_rfpkf"]
+
+[node name="TestArea" type="Node2D" unique_id=1459302497]
+
+[node name="Player" parent="." unique_id=1769404413 instance=ExtResource("1_64fjj")]
+position = Vector2(64, 48)
+
+[node name="ControlUi" parent="." unique_id=1669422476 instance=ExtResource("2_rfpkf")]
+anchors_preset = 9
+anchor_top = 0.0
+offset_top = 100.0
+offset_bottom = 144.0
+grow_vertical = 2
