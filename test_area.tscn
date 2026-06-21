@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://ci51e2m6thx53" path="res://player/player.tscn" id="1_64fjj"]
 [ext_resource type="PackedScene" uid="uid://dmrkm8hf1oqtt" path="res://controls/control_ui.tscn" id="2_rfpkf"]
-[ext_resource type="PackedScene" uid="uid://c14hx8cevuhx" path="res://tiles/spin_tiles/counter_clockwise_tile.tscn" id="3_6fnve"]
-[ext_resource type="PackedScene" uid="uid://dtjxav8p2dpbb" path="res://tiles/spin_tiles/clockwise_tile.tscn" id="4_od0h0"]
-[ext_resource type="PackedScene" uid="uid://cl2ng2mkdjnsw" path="res://tiles/facing_tile/facing_tile.tscn" id="5_vt2yd"]
+[ext_resource type="PackedScene" uid="uid://c14hx8cevuhx" path="res://tiles/scenes/counter_clockwise_tile.tscn" id="3_6fnve"]
+[ext_resource type="PackedScene" uid="uid://dtjxav8p2dpbb" path="res://tiles/scenes/clockwise_tile.tscn" id="4_od0h0"]
+[ext_resource type="PackedScene" uid="uid://cl2ng2mkdjnsw" path="res://tiles/scenes/facing_tile.tscn" id="5_vt2yd"]
 
 [node name="TestArea" type="Node2D" unique_id=1459302497]
 

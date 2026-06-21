@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cl2ng2mkdjnsw"]
 
-[ext_resource type="Texture2D" uid="uid://mucl2nhdwyiq" path="res://tiles/facing_tile/Blocking Tile.png" id="1_10fra"]
-[ext_resource type="Script" uid="uid://c4p6cex2v6ucp" path="res://tiles/facing_tile/facing_tile.gd" id="1_icggo"]
+[ext_resource type="Texture2D" uid="uid://mucl2nhdwyiq" path="res://tiles/sprites/Blocking Tile.png" id="1_10fra"]
+[ext_resource type="Script" uid="uid://c4p6cex2v6ucp" path="res://tiles/scripts/facing_tile.gd" id="1_icggo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ljn27"]
 size = Vector2(16, 16)
@@ -25,6 +25,8 @@ shape = SubResource("RectangleShape2D_ljn27")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=834033690]
 unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=595450641]
 position = Vector2(8, 8)

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dtjxav8p2dpbb"]
 
-[ext_resource type="Script" uid="uid://dy4g07447y2j1" path="res://tiles/spin_tiles/scripts/clockwise_tile.gd" id="1_lqdmf"]
-[ext_resource type="Texture2D" uid="uid://cw4pvf0vg2eqs" path="res://tiles/spin_tiles/Counter Clockwise.png" id="2_i6hj5"]
+[ext_resource type="Script" uid="uid://dy4g07447y2j1" path="res://tiles/scripts/clockwise_tile.gd" id="1_lqdmf"]
+[ext_resource type="Texture2D" uid="uid://cw4pvf0vg2eqs" path="res://tiles/sprites/Counter Clockwise.png" id="2_i6hj5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ljn27"]
 size = Vector2(12, 12)

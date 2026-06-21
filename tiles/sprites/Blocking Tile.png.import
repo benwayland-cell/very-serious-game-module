@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://mucl2nhdwyiq"
-path="res://.godot/imported/Blocking Tile.png-8311b78d8ae2631fa5b2b405fa107aa7.ctex"
+path="res://.godot/imported/Blocking Tile.png-75d78e6cf9e773205341cc04703e3222.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/facing_tile/Blocking Tile.png"
-dest_files=["res://.godot/imported/Blocking Tile.png-8311b78d8ae2631fa5b2b405fa107aa7.ctex"]
+source_file="res://tiles/sprites/Blocking Tile.png"
+dest_files=["res://.godot/imported/Blocking Tile.png-75d78e6cf9e773205341cc04703e3222.ctex"]
 
 [params]
 
