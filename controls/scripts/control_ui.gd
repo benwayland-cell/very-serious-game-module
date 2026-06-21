@@ -6,13 +6,48 @@ extends MarginContainer
 @onready var left_slot: ControlSlot = %ControlSlotLeft
 @onready var right_slot: ControlSlot = %ControlSlotRight
 
+# How many animations we're waiting to finish before updating
+var animation_count: int = 0
+
 
 func _ready() -> void:
-	PlayerActions.updated.connect(on_player_actions_updated)
+	PlayerActions.moved_clockwise.connect(_on_player_actions_moved_clockwise)
+	PlayerActions.moved_counter_clockwise.connect(_on_player_actions_moved_counter_clockwise)
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("debug3"):
+		up_slot.animate_moving_to(Vector2.ZERO, 1)
 
 
-func on_player_actions_updated() -> void:
+func update_actions() -> void:
 	up_slot.set_to_action(PlayerActions.up)
 	down_slot.set_to_action(PlayerActions.down)
 	left_slot.set_to_action(PlayerActions.left)
 	right_slot.set_to_action(PlayerActions.right)
+
+
+func _on_control_slot_animation_start() -> void:
+	animation_count += 1
+
+
+func _on_control_slot_animation_done() -> void:
+	animation_count -= 1
+	if (animation_count <= 0):
+		animation_count = 0
+		update_actions()
+
+
+func _on_player_actions_moved_clockwise() -> void:
+	var animation_time := 0.5
+	up_slot.animate_moving_to(right_slot.global_position, animation_time)
+	right_slot.animate_moving_to(down_slot.global_position, animation_time)
+	down_slot.animate_moving_to(left_slot.global_position, animation_time)
+	left_slot.animate_moving_to(up_slot.global_position, animation_time)
+
+
+func _on_player_actions_moved_counter_clockwise() -> void:
+	var animation_time := 0.5
+	up_slot.animate_moving_to(left_slot.global_position, animation_time)
+	right_slot.animate_moving_to(up_slot.global_position, animation_time)
+	down_slot.animate_moving_to(right_slot.global_position, animation_time)
+	left_slot.animate_moving_to(down_slot.global_position, animation_time)

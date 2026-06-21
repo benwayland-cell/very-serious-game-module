@@ -10,12 +10,15 @@ anchor_bottom = 1.0
 offset_top = -44.0
 offset_right = 64.0
 grow_vertical = 0
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_bottom = 4
 script = ExtResource("1_egfif")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=598653962]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 1
 alignment = 1
 
 [node name="ControlSlotUp" parent="VBoxContainer" unique_id=527469143 instance=ExtResource("1_5g6xu")]
@@ -26,6 +29,7 @@ initial_action = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1068889838]
 layout_mode = 2
+theme_override_constants/separation = 1
 
 [node name="ControlSlotLeft" parent="VBoxContainer/HBoxContainer" unique_id=368205988 instance=ExtResource("1_5g6xu")]
 unique_name_in_owner = true
@@ -41,3 +45,12 @@ initial_action = 2
 unique_name_in_owner = true
 layout_mode = 2
 initial_action = 4
+
+[connection signal="animation_done" from="VBoxContainer/ControlSlotUp" to="." method="_on_control_slot_animation_done"]
+[connection signal="animation_start" from="VBoxContainer/ControlSlotUp" to="." method="_on_control_slot_animation_start"]
+[connection signal="animation_done" from="VBoxContainer/HBoxContainer/ControlSlotLeft" to="." method="_on_control_slot_animation_done"]
+[connection signal="animation_start" from="VBoxContainer/HBoxContainer/ControlSlotLeft" to="." method="_on_control_slot_animation_start"]
+[connection signal="animation_done" from="VBoxContainer/HBoxContainer/ControlSlotDown" to="." method="_on_control_slot_animation_done"]
+[connection signal="animation_start" from="VBoxContainer/HBoxContainer/ControlSlotDown" to="." method="_on_control_slot_animation_start"]
+[connection signal="animation_done" from="VBoxContainer/HBoxContainer/ControlSlotRight" to="." method="_on_control_slot_animation_done"]
+[connection signal="animation_start" from="VBoxContainer/HBoxContainer/ControlSlotRight" to="." method="_on_control_slot_animation_start"]

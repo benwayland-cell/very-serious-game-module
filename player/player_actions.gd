@@ -1,6 +1,8 @@
 extends Node
 
-signal updated
+signal moved_clockwise
+signal moved_counter_clockwise
+
 
 enum Actions {NONE, MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT}
 
@@ -35,21 +37,21 @@ func _run_action(action: Actions) -> void:
 			player.move_right()
 
 
-func move_clockwise() -> void:
+func move_counter_clockwise() -> void:
 	var temp = [up, right, down, left]
 	up = temp[1]
 	right = temp[2]
 	down = temp[3]
 	left = temp[0]
 	
-	updated.emit()
+	moved_counter_clockwise.emit()
 
 
-func move_counter_clockwise() -> void:
+func move_clockwise() -> void:
 	var temp = [up, right, down, left]
 	up = temp[3]
 	right = temp[0]
 	down = temp[1]
 	left = temp[2]
 	
-	updated.emit()
+	moved_clockwise.emit()
