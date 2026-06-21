@@ -20,6 +20,11 @@ var frame_count: int = 0
 var facing_direction: FacingDirections = FacingDirections.UP
 var direction: Vector2 = Vector2.ZERO
 
+var input_stack: Array[String] = []
+const INPUTS: Array[String] = ["up", "down", "left", "right"]
+const INPUTS_FACING_DIRECTIONS: Array[FacingDirections] = (
+		[FacingDirections.UP, FacingDirections.DOWN, FacingDirections.LEFT, FacingDirections.RIGHT])
+
 
 func _ready() -> void:
 	viewport_rect = get_viewport_rect()
@@ -42,28 +47,44 @@ func _process(_delta: float) -> void:
 		_handle_spinning()
 		return
 	
+	_handle_facing_direction()
 	_handle_animation()
 	_handle_movement()
 
 
+func _handle_facing_direction() -> void:
+	for input in INPUTS:
+		if Input.is_action_just_pressed(input):
+			input_stack.append(input)
+		if not Input.is_action_pressed(input):
+			input_stack.erase(input)
+	
+	if input_stack.size() > 0:
+		var current_input := input_stack[-1]
+		facing_direction = _input_to_facing_direction(current_input)
+
+
+func _input_to_facing_direction(input: String) -> FacingDirections:
+	return INPUTS_FACING_DIRECTIONS[INPUTS.find(input)]
+
+
 func _handle_animation() -> void:
-	if Input.is_action_pressed("up"):
-		sprite.frame = 0
-		facing_direction = FacingDirections.UP
-	if Input.is_action_pressed("right"):
-		sprite.frame = 1
-		facing_direction = FacingDirections.RIGHT
-	if Input.is_action_pressed("down"):
-		sprite.frame = 2
-		facing_direction = FacingDirections.DOWN
-	if Input.is_action_pressed("left"):
-		sprite.frame = 3
-		facing_direction = FacingDirections.LEFT
+	match facing_direction:
+		FacingDirections.UP:
+			sprite.frame = 0
+		FacingDirections.RIGHT:
+			sprite.frame = 1
+		FacingDirections.DOWN:
+			sprite.frame = 2
+		FacingDirections.LEFT:
+			sprite.frame = 3
 
 
 func _handle_movement() -> void:
 	direction = Vector2.ZERO
-	PlayerActions.run_actions()
+	if input_stack.size() > 0:
+		PlayerActions.do_action(_input_to_facing_direction(input_stack[-1]))
+	
 	velocity = direction * speed
 	move_and_slide()
 	_keep_on_screen()
@@ -120,16 +141,16 @@ func _on_player_actions_moved_counter_clockwise() -> void:
 
 
 func move_up() -> void:
-	direction += Vector2.UP
+	direction = Vector2.UP
 
 
 func move_down() -> void:
-	direction += Vector2.DOWN
+	direction = Vector2.DOWN
 
 
 func move_left() -> void:
-	direction += Vector2.LEFT
+	direction = Vector2.LEFT
 
 
 func move_right() -> void:
-	direction += Vector2.RIGHT
+	direction = Vector2.RIGHT

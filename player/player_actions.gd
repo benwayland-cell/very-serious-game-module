@@ -15,15 +15,16 @@ var left: Actions = Actions.MOVE_LEFT
 var right: Actions = Actions.MOVE_RIGHT
 
 
-func run_actions() -> void:
-	if Input.is_action_pressed("up"):
-		_run_action(up)
-	if Input.is_action_pressed("down"):
-		_run_action(down)
-	if Input.is_action_pressed("left"):
-		_run_action(left)
-	if Input.is_action_pressed("right"):
-		_run_action(right)
+func do_action(direction: Player.FacingDirections) -> void:
+	match direction:
+		Player.FacingDirections.UP:
+			_run_action(up)
+		Player.FacingDirections.DOWN:
+			_run_action(down)
+		Player.FacingDirections.LEFT:
+			_run_action(left)
+		Player.FacingDirections.RIGHT:
+			_run_action(right)
 
 
 func _run_action(action: Actions) -> void:
