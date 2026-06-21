@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b4nb15c5ka58b"]
+
+[ext_resource type="PackedScene" uid="uid://cf2vnc2rs54lr" path="res://tilemap/tilemap.tscn" id="1_rxopl"]
+[ext_resource type="PackedScene" uid="uid://dmrkm8hf1oqtt" path="res://controls/control_ui.tscn" id="2_q31rq"]
+[ext_resource type="PackedScene" uid="uid://ci51e2m6thx53" path="res://player/player.tscn" id="2_q64m3"]
+[ext_resource type="PackedScene" uid="uid://dtjxav8p2dpbb" path="res://tiles/scenes/clockwise_tile.tscn" id="3_pa477"]
+[ext_resource type="PackedScene" uid="uid://c14hx8cevuhx" path="res://tiles/scenes/counter_clockwise_tile.tscn" id="4_bl05k"]
+[ext_resource type="PackedScene" uid="uid://cl2ng2mkdjnsw" path="res://tiles/scenes/facing_tile.tscn" id="5_dk4fn"]
+
+[node name="Level" type="Node2D" unique_id=529739939]
+
+[node name="Tilemap" parent="." unique_id=1539137905 instance=ExtResource("1_rxopl")]
+
+[node name="ControlUi" parent="." unique_id=1669422476 instance=ExtResource("2_q31rq")]
+offset_top = 100.0
+offset_bottom = 144.0
+
+[node name="Player" parent="." unique_id=1769404413 instance=ExtResource("2_q64m3")]
+position = Vector2(32, 176)
+
+[node name="ClockwiseTile" parent="." unique_id=210857048 instance=ExtResource("3_pa477")]
+position = Vector2(64, 176)
+
+[node name="CounterClockwiseTile" parent="." unique_id=1953016038 instance=ExtResource("4_bl05k")]
+position = Vector2(80, 176)
+
+[node name="FacingTile" parent="." unique_id=1854367602 instance=ExtResource("5_dk4fn")]
+position = Vector2(96, 176)

@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ljn27"]
 size = Vector2(12, 12)
 
-[node name="CounterClockwiseTile" type="Area2D" unique_id=210857048]
+[node name="ClockwiseTile" type="Area2D" unique_id=210857048]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_lqdmf")
