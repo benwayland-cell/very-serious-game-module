@@ -14,10 +14,6 @@ func _ready() -> void:
 	PlayerActions.moved_clockwise.connect(_on_player_actions_moved_clockwise)
 	PlayerActions.moved_counter_clockwise.connect(_on_player_actions_moved_counter_clockwise)
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("debug3"):
-		up_slot.animate_moving_to(Vector2.ZERO, 1)
-
 
 func update_actions() -> void:
 	up_slot.set_to_action(PlayerActions.up)
