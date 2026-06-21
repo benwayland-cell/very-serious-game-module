@@ -30,3 +30,4 @@ position = Vector2(112, 16)
 
 [node name="FacingTile" parent="." unique_id=1854367602 instance=ExtResource("5_vt2yd")]
 position = Vector2(112, 64)
+faded_amount = null

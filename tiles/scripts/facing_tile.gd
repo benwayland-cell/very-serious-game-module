@@ -2,6 +2,7 @@
 extends StaticBody2D
 
 @export var direction: Player.FacingDirections = Player.FacingDirections.UP
+@export var faded_amount: float = 0.5
 
 @onready var sprite: Sprite2D = %Sprite2D
 @onready var area: Area2D = %Area2D
@@ -14,7 +15,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		old_direction = direction
 	
-	player = get_tree().get_nodes_in_group("player")[0]
+	player = get_tree().get_first_node_in_group("player")
 	
 	_set_direction()
 
@@ -28,9 +29,12 @@ func _process(_delta: float) -> void:
 	
 	var colliding := player.facing_direction != direction
 	if colliding:
+		modulate.a = 1
 		for body in area.get_overlapping_bodies():
 			if body is Player:
 				colliding = false
+	else:
+		modulate.a = faded_amount
 	
 	set_collision_layer_value(1, colliding)
 
