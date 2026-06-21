@@ -6,6 +6,9 @@ enum FacingDirections {UP, DOWN, LEFT, RIGHT}
 @export var speed: float = 100.0
 @export var spin_speed: int = 2
 
+var viewport_rect: Rect2
+var player_size: Vector2
+
 @onready var sprite: Sprite2D = %Sprite2D
 
 @onready var sprite_frame_count: int = sprite.vframes * sprite.hframes
@@ -19,6 +22,9 @@ var direction: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
+	viewport_rect = get_viewport_rect()
+	player_size = %CollisionShape2D.shape.size
+	
 	spin_timer.wait_time = PlayerActions.spin_animation_time
 	
 	PlayerActions.player = self
@@ -60,6 +66,18 @@ func _handle_movement() -> void:
 	PlayerActions.run_actions()
 	velocity = direction * speed
 	move_and_slide()
+	_keep_on_screen()
+
+
+func _keep_on_screen() -> void:
+	if position.x <= 0:
+		position.x = 0
+	if position.y <= 0:
+		position.y = 0
+	if position.x >= viewport_rect.size.x - player_size.x:
+		position.x = viewport_rect.size.x - player_size.x
+	if position.y >= viewport_rect.size.y - player_size.y:
+		position.y = viewport_rect.size.y - player_size.y
 
 
 func _handle_spinning() -> void:
