@@ -19,6 +19,8 @@ var direction: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
+	spin_timer.wait_time = PlayerActions.spin_animation_time
+	
 	PlayerActions.player = self
 	PlayerActions.moved_clockwise.connect(_on_player_actions_moved_clockwise)
 	PlayerActions.moved_counter_clockwise.connect(_on_player_actions_moved_counter_clockwise)

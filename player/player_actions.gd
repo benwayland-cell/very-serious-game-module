@@ -3,6 +3,7 @@ extends Node
 signal moved_clockwise
 signal moved_counter_clockwise
 
+@export var spin_animation_time: float = 0.5
 
 enum Actions {NONE, MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT}
 

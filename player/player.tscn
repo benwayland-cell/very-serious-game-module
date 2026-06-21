@@ -7,6 +7,7 @@
 size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D" unique_id=1769404413]
+z_index = 1
 script = ExtResource("1_rkbax")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=375395728]
@@ -22,6 +23,5 @@ shape = SubResource("RectangleShape2D_ljn27")
 
 [node name="SpinTimer" type="Timer" parent="." unique_id=2105848305]
 unique_name_in_owner = true
-wait_time = 0.5
 
 [connection signal="timeout" from="SpinTimer" to="." method="_on_spin_timer_timeout"]

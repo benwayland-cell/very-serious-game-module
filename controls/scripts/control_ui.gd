@@ -34,7 +34,7 @@ func _on_control_slot_animation_done() -> void:
 
 
 func _on_player_actions_moved_clockwise() -> void:
-	var animation_time := 0.5
+	var animation_time := PlayerActions.spin_animation_time
 	up_slot.animate_moving_to(right_slot.global_position, animation_time)
 	right_slot.animate_moving_to(down_slot.global_position, animation_time)
 	down_slot.animate_moving_to(left_slot.global_position, animation_time)
@@ -42,7 +42,7 @@ func _on_player_actions_moved_clockwise() -> void:
 
 
 func _on_player_actions_moved_counter_clockwise() -> void:
-	var animation_time := 0.5
+	var animation_time := PlayerActions.spin_animation_time
 	up_slot.animate_moving_to(left_slot.global_position, animation_time)
 	right_slot.animate_moving_to(up_slot.global_position, animation_time)
 	down_slot.animate_moving_to(right_slot.global_position, animation_time)
