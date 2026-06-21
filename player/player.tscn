@@ -6,8 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ljn27"]
 size = Vector2(16, 16)
 
-[node name="Player" type="CharacterBody2D" unique_id=1769404413]
+[node name="Player" type="CharacterBody2D" unique_id=1769404413 groups=["player"]]
 z_index = 1
+collision_layer = 2
 script = ExtResource("1_rkbax")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=375395728]
@@ -18,6 +19,7 @@ hframes = 2
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=976533581]
+visible = false
 position = Vector2(8, 7.9999995)
 shape = SubResource("RectangleShape2D_ljn27")
 

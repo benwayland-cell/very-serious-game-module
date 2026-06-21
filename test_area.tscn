@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dmrkm8hf1oqtt" path="res://controls/control_ui.tscn" id="2_rfpkf"]
 [ext_resource type="PackedScene" uid="uid://c14hx8cevuhx" path="res://tiles/spin_tiles/counter_clockwise_tile.tscn" id="3_6fnve"]
 [ext_resource type="PackedScene" uid="uid://dtjxav8p2dpbb" path="res://tiles/spin_tiles/clockwise_tile.tscn" id="4_od0h0"]
+[ext_resource type="PackedScene" uid="uid://cl2ng2mkdjnsw" path="res://tiles/facing_tile/facing_tile.tscn" id="5_vt2yd"]
 
 [node name="TestArea" type="Node2D" unique_id=1459302497]
 
@@ -36,3 +37,6 @@ position = Vector2(64, 16)
 
 [node name="CounterClockwiseTile2" parent="." unique_id=390887035 instance=ExtResource("4_od0h0")]
 position = Vector2(112, 16)
+
+[node name="FacingTile" parent="." unique_id=1854367602 instance=ExtResource("5_vt2yd")]
+position = Vector2(112, 64)
