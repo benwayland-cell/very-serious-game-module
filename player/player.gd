@@ -9,13 +9,10 @@ enum FacingDirections {UP, DOWN, LEFT, RIGHT}
 var viewport_rect: Rect2
 var player_size: Vector2
 
-@onready var sprite: Sprite2D = %Sprite2D
+@onready var animated_sprite: AnimatedSprite2D = %AnimatedSprite2D
 
-@onready var sprite_frame_count: int = sprite.vframes * sprite.hframes
 @onready var spin_timer: Timer = %SpinTimer
-var is_spinning_clockwise: bool = false
-var is_spinning_counter_clockwise: bool = false
-var frame_count: int = 0
+var is_spinning: bool = false
 
 var facing_direction: FacingDirections = FacingDirections.UP
 var direction: Vector2 = Vector2.ZERO
@@ -43,8 +40,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("debug2"):
 		PlayerActions.move_counter_clockwise()
 	
-	if is_spinning_clockwise or is_spinning_counter_clockwise:
-		_handle_spinning()
+	if is_spinning:
 		return
 	
 	_handle_facing_direction()
@@ -69,15 +65,8 @@ func _input_to_facing_direction(input: String) -> FacingDirections:
 
 
 func _handle_animation() -> void:
-	match facing_direction:
-		FacingDirections.UP:
-			sprite.frame = 0
-		FacingDirections.RIGHT:
-			sprite.frame = 1
-		FacingDirections.DOWN:
-			sprite.frame = 2
-		FacingDirections.LEFT:
-			sprite.frame = 3
+	if input_stack.size() > 0:
+		animated_sprite.play(input_stack[-1])
 
 
 func _handle_movement() -> void:
@@ -101,40 +90,25 @@ func _keep_on_screen() -> void:
 		position.y = viewport_rect.size.y - player_size.y
 
 
-func _handle_spinning() -> void:
-	# wait until we've reached the spin speed
-	if (frame_count < spin_speed):
-		frame_count += 1
-		return
-	frame_count = 0
-	
-	var frame_to_set_to = sprite.frame
-	if is_spinning_clockwise:
-		frame_to_set_to += 1
-	else:
-		frame_to_set_to -= 1
-	
-	if frame_to_set_to < 0:
-		frame_to_set_to += sprite_frame_count
-	elif frame_to_set_to >= sprite_frame_count:
-		frame_to_set_to -= sprite_frame_count
-	
-	sprite.frame = frame_to_set_to
-
-
 func _on_spin_timer_timeout() -> void:
-	is_spinning_clockwise = false
-	is_spinning_counter_clockwise = false
+	if input_stack.size() > 0:
+		animated_sprite.play(input_stack[-1])
+	else:
+		animated_sprite.play("up")
+	
+	is_spinning = false
 
 
 func _on_player_actions_moved_clockwise() -> void:
-	is_spinning_clockwise = true
+	animated_sprite.play("spin_clockwise")
 	spin_timer.start()
+	is_spinning = true
 
 
 func _on_player_actions_moved_counter_clockwise() -> void:
-	is_spinning_counter_clockwise = true
+	animated_sprite.play("spin_counter_clockwise")
 	spin_timer.start()
+	is_spinning = true
 
 
 ######### Actions
