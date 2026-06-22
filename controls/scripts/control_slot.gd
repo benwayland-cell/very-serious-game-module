@@ -44,6 +44,7 @@ func set_to_action(action: PlayerActions.Actions) -> void:
 
 func animate_moving_to(global_position_to_move_to: Vector2, animation_time: float) -> void:
 	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
 	tween.tween_property(
 		child_texture, "global_position",
 		global_position_to_move_to,
