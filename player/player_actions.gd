@@ -2,10 +2,13 @@ extends Node
 
 signal moved_clockwise
 signal moved_counter_clockwise
+signal moved_vertically
+signal moved_horizontally
 
 @export var spin_animation_time: float = 0.5
 
 enum Actions {NONE, MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT}
+enum SpinDirections {CLOCKWISE, COUNTER_CLOCKWISE, HORIZONTAL, VERTICAL}
 
 var player: Player
 
@@ -39,6 +42,18 @@ func _run_action(action: Actions) -> void:
 			player.move_right()
 
 
+func spin(spin_direction: SpinDirections) -> void:
+	match spin_direction:
+		SpinDirections.CLOCKWISE:
+			move_clockwise()
+		SpinDirections.COUNTER_CLOCKWISE:
+			move_counter_clockwise()
+		SpinDirections.VERTICAL:
+			move_vertically()
+		SpinDirections.HORIZONTAL:
+			move_horizontally()
+
+
 func move_counter_clockwise() -> void:
 	var temp = [up, right, down, left]
 	up = temp[1]
@@ -57,3 +72,19 @@ func move_clockwise() -> void:
 	left = temp[2]
 	
 	moved_clockwise.emit()
+
+
+func move_vertically() -> void:
+	var temp = [up, down]
+	up = temp[1]
+	down = temp[0]
+	
+	moved_vertically.emit()
+
+
+func move_horizontally() -> void:
+	var temp = [left, right]
+	left = temp[1]
+	right = temp[0]
+	
+	moved_horizontally.emit()

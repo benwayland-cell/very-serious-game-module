@@ -181,6 +181,5 @@ unique_name_in_owner = true
 position = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_ljn27")
 animation = &"spin_horizontal"
-frame_progress = 0.1810909
 
 [connection signal="timeout" from="SpinTimer" to="." method="_on_spin_timer_timeout"]

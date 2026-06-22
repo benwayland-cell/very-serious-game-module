@@ -32,6 +32,8 @@ func _ready() -> void:
 	PlayerActions.player = self
 	PlayerActions.moved_clockwise.connect(_on_player_actions_moved_clockwise)
 	PlayerActions.moved_counter_clockwise.connect(_on_player_actions_moved_counter_clockwise)
+	PlayerActions.moved_vertically.connect(_on_player_actions_moved_vertically)
+	PlayerActions.moved_horizontally.connect(_on_player_actions_moved_horizontally)
 
 
 func _process(_delta: float) -> void:
@@ -72,7 +74,7 @@ func _handle_animation() -> void:
 func _handle_movement() -> void:
 	direction = Vector2.ZERO
 	if input_stack.size() > 0:
-		PlayerActions.do_action(_input_to_facing_direction(input_stack[-1]))
+		PlayerActions.do_action(facing_direction)
 	
 	velocity = direction * speed
 	move_and_slide()
@@ -107,6 +109,18 @@ func _on_player_actions_moved_clockwise() -> void:
 
 func _on_player_actions_moved_counter_clockwise() -> void:
 	animated_sprite.play("spin_counter_clockwise")
+	spin_timer.start()
+	is_spinning = true
+
+
+func _on_player_actions_moved_vertically() -> void:
+	animated_sprite.play("spin_vertical")
+	spin_timer.start()
+	is_spinning = true
+
+
+func _on_player_actions_moved_horizontally() -> void:
+	animated_sprite.play("spin_horizontal")
 	spin_timer.start()
 	is_spinning = true
 

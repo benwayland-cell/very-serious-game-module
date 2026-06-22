@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://sp5626vpyl51"]
+
+[ext_resource type="Texture2D" uid="uid://cw4pvf0vg2eqs" path="res://tiles/sprites/Counter Clockwise.png" id="1_dsxli"]
+[ext_resource type="Script" uid="uid://dnkpsl41fc0tu" path="res://tiles/scripts/spin_tile.gd" id="1_na6c8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljn27"]
+size = Vector2(8, 8)
+
+[node name="SpinTile" type="Area2D" unique_id=1843618504]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_na6c8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1426127666]
+unique_name_in_owner = true
+position = Vector2(8, 8)
+texture = ExtResource("1_dsxli")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=434733549]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_ljn27")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
