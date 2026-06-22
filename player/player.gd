@@ -1,31 +1,43 @@
 class_name Player
 extends CharacterBody2D
 
+@export var speed: float = 0.3
+
 enum FacingDirections {UP, DOWN, LEFT, RIGHT}
 
-@export var speed: float = 100.0
-@export var spin_speed: int = 2
-
-var viewport_rect: Rect2
-var player_size: Vector2
+const INPUTS: Array[String] = ["up", "down", "left", "right"]
+const INPUT_TO_FACING_DIRECTION: Dictionary[String, FacingDirections] = {
+	"up": FacingDirections.UP,
+	"down": FacingDirections.DOWN,
+	"left": FacingDirections.LEFT,
+	"right": FacingDirections.RIGHT,
+}
 
 @onready var animated_sprite: AnimatedSprite2D = %AnimatedSprite2D
-
 @onready var spin_timer: Timer = %SpinTimer
+
+var level_size: Vector2i
+var tile_size: int
+var current_pos: Vector2i
+
 var is_spinning: bool = false
 
 var facing_direction: FacingDirections = FacingDirections.UP
-var direction: Vector2 = Vector2.ZERO
+var direction: Vector2i = Vector2.ZERO
+var moving: bool = false
 
 var input_stack: Array[String] = []
-const INPUTS: Array[String] = ["up", "down", "left", "right"]
-const INPUTS_FACING_DIRECTIONS: Array[FacingDirections] = (
-		[FacingDirections.UP, FacingDirections.DOWN, FacingDirections.LEFT, FacingDirections.RIGHT])
+var any_button_is_pressed: bool = false
 
 
 func _ready() -> void:
-	viewport_rect = get_viewport_rect()
-	player_size = %CollisionShape2D.shape.size
+	var viewport_rect: Rect2 = get_viewport_rect()
+	tile_size = %CollisionShape2D.shape.size.x
+	level_size = Vector2i(
+				int(viewport_rect.size.x / tile_size),
+				int(viewport_rect.size.y / tile_size),
+			)
+	current_pos = global_position / tile_size
 	
 	spin_timer.wait_time = PlayerActions.spin_animation_time
 	
@@ -59,41 +71,52 @@ func _handle_facing_direction() -> void:
 	
 	if input_stack.size() > 0:
 		var current_input := input_stack[-1]
-		facing_direction = _input_to_facing_direction(current_input)
-
-
-func _input_to_facing_direction(input: String) -> FacingDirections:
-	return INPUTS_FACING_DIRECTIONS[INPUTS.find(input)]
+		facing_direction = INPUT_TO_FACING_DIRECTION[current_input]
+		any_button_is_pressed = true
+	else:
+		any_button_is_pressed = false
 
 
 func _handle_animation() -> void:
-	if input_stack.size() > 0:
+	if any_button_is_pressed:
 		animated_sprite.play(input_stack[-1])
 
 
 func _handle_movement() -> void:
 	direction = Vector2.ZERO
-	if input_stack.size() > 0:
+	if any_button_is_pressed:
 		PlayerActions.do_action(facing_direction)
+		_move_player()
 	
-	velocity = direction * speed
 	move_and_slide()
-	_keep_on_screen()
 
 
-func _keep_on_screen() -> void:
-	if position.x <= 0:
-		position.x = 0
-	if position.y <= 0:
-		position.y = 0
-	if position.x >= viewport_rect.size.x - player_size.x:
-		position.x = viewport_rect.size.x - player_size.x
-	if position.y >= viewport_rect.size.y - player_size.y:
-		position.y = viewport_rect.size.y - player_size.y
+func _move_player() -> void:
+	if moving:
+		return
+	
+	var target_pos: Vector2i = current_pos + direction
+	if (
+			target_pos.x < 0 or
+			target_pos.y < 0 or 
+			target_pos.x >= level_size.x or
+			target_pos.y >= level_size.y
+		):
+		return
+	
+	var tween: Tween = create_tween()
+	tween.tween_property(self, "global_position", Vector2(target_pos * tile_size), speed)
+	moving = true
+	tween.tween_callback(_stopped_moving)
+	current_pos = target_pos
+
+
+func _stopped_moving() -> void:
+	moving = false
 
 
 func _on_spin_timer_timeout() -> void:
-	if input_stack.size() > 0:
+	if any_button_is_pressed:
 		animated_sprite.play(input_stack[-1])
 	else:
 		animated_sprite.play("up")

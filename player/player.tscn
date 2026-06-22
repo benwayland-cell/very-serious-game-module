@@ -3,9 +3,6 @@
 [ext_resource type="Script" uid="uid://c2bt6ptq72jt7" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://ygytocffh6ic" path="res://player/player.png" id="2_rkbax"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljn27"]
-size = Vector2(16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_rkbax"]
 atlas = ExtResource("2_rkbax")
 region = Rect2(0, 16, 16, 16)
@@ -161,25 +158,27 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljn27"]
+size = Vector2(16, 16)
+
 [node name="Player" type="CharacterBody2D" unique_id=1769404413 groups=["player"]]
 z_index = 1
 collision_layer = 2
 script = ExtResource("1_rkbax")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=976533581]
-unique_name_in_owner = true
-visible = false
-position = Vector2(8, 7.9999995)
-shape = SubResource("RectangleShape2D_ljn27")
-
-[node name="SpinTimer" type="Timer" parent="." unique_id=2105848305]
-unique_name_in_owner = true
-one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1096518850]
 unique_name_in_owner = true
 position = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_ljn27")
 animation = &"spin_horizontal"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=976533581]
+unique_name_in_owner = true
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_ljn27")
+
+[node name="SpinTimer" type="Timer" parent="." unique_id=2105848305]
+unique_name_in_owner = true
+one_shot = true
 
 [connection signal="timeout" from="SpinTimer" to="." method="_on_spin_timer_timeout"]
