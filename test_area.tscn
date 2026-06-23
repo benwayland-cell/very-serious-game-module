@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cf2vnc2rs54lr" path="res://tilemap/tilemap.tscn" id="1_xdpsd"]
 [ext_resource type="PackedScene" uid="uid://dmrkm8hf1oqtt" path="res://controls/control_ui.tscn" id="2_rfpkf"]
 [ext_resource type="PackedScene" uid="uid://cl2ng2mkdjnsw" path="res://tiles/scenes/facing_tile.tscn" id="5_vt2yd"]
+[ext_resource type="PackedScene" uid="uid://b5l10h52lr8tl" path="res://tiles/scenes/win_tile.tscn" id="6_xdpsd"]
 [ext_resource type="PackedScene" uid="uid://sp5626vpyl51" path="res://tiles/scenes/spin_tile.tscn" id="7_6ii2q"]
 
 [node name="TestArea" type="Node2D" unique_id=1459302497]
@@ -27,3 +28,6 @@ position = Vector2(112, 64)
 [node name="SpinTile" parent="." unique_id=1843618504 instance=ExtResource("7_6ii2q")]
 position = Vector2(64, 16)
 spin_direction = 3
+
+[node name="WinTile" parent="." unique_id=1129835346 instance=ExtResource("6_xdpsd")]
+position = Vector2(32, 64)

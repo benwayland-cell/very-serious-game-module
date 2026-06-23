@@ -15,8 +15,10 @@ script = ExtResource("1_na6c8")
 unique_name_in_owner = true
 position = Vector2(8, 8)
 texture = ExtResource("1_dsxli")
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=434733549]
+visible = false
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_ljn27")
 

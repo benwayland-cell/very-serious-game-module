@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://b5l10h52lr8tl"]
+
+[ext_resource type="Texture2D" uid="uid://b0hb7n4uvmpgv" path="res://tiles/sprites/Win Tile.png" id="1_1ih7x"]
+[ext_resource type="Script" uid="uid://cxx02g02xuxae" path="res://tiles/scripts/win_tile.gd" id="1_y3f7r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3f7r"]
+atlas = ExtResource("1_1ih7x")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pchdn"]
+atlas = ExtResource("1_1ih7x")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3dgh"]
+atlas = ExtResource("1_1ih7x")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhmbv"]
+atlas = ExtResource("1_1ih7x")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2chr"]
+atlas = ExtResource("1_1ih7x")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ljn27"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3f7r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pchdn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3dgh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhmbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2chr")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljn27"]
+size = Vector2(8, 8)
+
+[node name="WinTile" type="Area2D" unique_id=1129835346]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_y3f7r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1679424022]
+unique_name_in_owner = true
+position = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_ljn27")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1421343750]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_ljn27")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

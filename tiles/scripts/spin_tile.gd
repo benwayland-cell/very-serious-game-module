@@ -45,9 +45,3 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	
 	PlayerActions.spin(spin_direction)
-	var tween: Tween = create_tween()
-	tween.tween_property(
-		body, "global_position",
-		global_position,
-		PlayerActions.spin_animation_time
-	)

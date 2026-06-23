@@ -1,7 +1,11 @@
 class_name Player
 extends CharacterBody2D
 
+signal won
+
 @export var speed: float = 0.3
+@export var win_bigger_speed: float = 1.05
+@export var win_timer_time: float = 0.5
 
 enum FacingDirections {UP, DOWN, LEFT, RIGHT}
 
@@ -14,7 +18,9 @@ const INPUT_TO_FACING_DIRECTION: Dictionary[String, FacingDirections] = {
 }
 
 @onready var animated_sprite: AnimatedSprite2D = %AnimatedSprite2D
+@onready var ray: RayCast2D = %RayCast2D
 @onready var spin_timer: Timer = %SpinTimer
+@onready var win_anim_timer: Timer = %WinAnimTimer
 
 var level_size: Vector2i
 var tile_size: int
@@ -23,11 +29,14 @@ var current_pos: Vector2i
 var is_spinning: bool = false
 
 var facing_direction: FacingDirections = FacingDirections.UP
-var direction: Vector2i = Vector2.ZERO
+var direction: Vector2i = Vector2i.ZERO:
+	set = _set_direction
 var moving: bool = false
 
 var input_stack: Array[String] = []
 var any_button_is_pressed: bool = false
+
+var has_won: bool = false
 
 
 func _ready() -> void:
@@ -49,6 +58,10 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	if has_won:
+		_handle_win_animation()
+		return
+	
 	if Input.is_action_just_pressed("debug1"):
 		PlayerActions.move_clockwise()
 	if Input.is_action_just_pressed("debug2"):
@@ -96,23 +109,28 @@ func _move_player() -> void:
 		return
 	
 	var target_pos: Vector2i = current_pos + direction
-	if (
-			target_pos.x < 0 or
-			target_pos.y < 0 or 
-			target_pos.x >= level_size.x or
-			target_pos.y >= level_size.y
-		):
+	if not _can_move(target_pos):
 		return
 	
 	var tween: Tween = create_tween()
 	tween.tween_property(self, "global_position", Vector2(target_pos * tile_size), speed)
 	moving = true
-	tween.tween_callback(_stopped_moving)
+	tween.tween_callback(_stop_moving)
 	current_pos = target_pos
 
 
-func _stopped_moving() -> void:
+func _stop_moving() -> void:
 	moving = false
+
+
+func _can_move(target_pos: Vector2i) -> bool:
+	return not (
+			target_pos.x < 0 or
+			target_pos.y < 0 or 
+			target_pos.x >= level_size.x or
+			target_pos.y >= level_size.y or
+			ray.is_colliding()
+		)
 
 
 func _on_spin_timer_timeout() -> void:
@@ -146,6 +164,27 @@ func _on_player_actions_moved_horizontally() -> void:
 	animated_sprite.play("spin_horizontal")
 	spin_timer.start()
 	is_spinning = true
+
+
+func _set_direction(new_direction: Vector2i) -> void:
+	direction = new_direction
+	if direction:
+		ray.target_position = direction * tile_size
+		ray.force_raycast_update()
+
+
+func win() -> void:
+	has_won = true
+	animated_sprite.play("spin_clockwise")
+	win_anim_timer.start()
+
+
+func _handle_win_animation() -> void:
+	animated_sprite.scale *= win_bigger_speed
+
+
+func _on_win_anim_timer_timeout() -> void:
+	won.emit()
 
 
 ######### Actions
