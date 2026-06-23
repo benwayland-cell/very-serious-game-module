@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://bbv1xyasog5fk"]
+
+[ext_resource type="Script" uid="uid://6n0mvsanr7fk" path="res://menus/scripts/level_select.gd" id="1_u4icl"]
+
+[node name="LevelSelect" type="Control" unique_id=1752152173]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u4icl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=757811528]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=895619983]
+layout_mode = 2
+text = "Level Select"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=1759198527]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer" unique_id=1251718923]
+layout_mode = 2
+
+[node name="Button1" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1934148066]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+text = "1"
+
+[node name="Button2" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer" unique_id=210614783]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+text = "2"
+
+[node name="Button3" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer" unique_id=393741363]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+text = "3"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1073054316]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="BackButton" type="Button" parent="MarginContainer" unique_id=1328843600]
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="MarginContainer/BackButton" to="." method="_on_back_button_pressed"]

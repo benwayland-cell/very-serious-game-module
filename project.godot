@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Very Serious Title TBD"
-run/main_scene="uid://dayptjko6xi8e"
+run/main_scene="uid://420xfjr34tdo"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 ControlSprites="*uid://brbpsm0x4xv4p"
 PlayerActions="*uid://bn5a2xsgdvbbe"
 SpinTileSprites="*uid://bbu0hsu4aw6y7"
+SceneManager="*uid://nvmkwlqeyuqu"
 
 [display]
 
