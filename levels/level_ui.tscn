@@ -5,6 +5,7 @@
 [ext_resource type="LabelSettings" uid="uid://cfu86x4u6ac72" path="res://default_label_settings.tres" id="2_ggnqm"]
 
 [node name="LevelUi" type="Control" unique_id=763482785]
+process_mode = 3
 z_index = 2
 layout_mode = 3
 anchors_preset = 15
@@ -25,8 +26,9 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.24705882)
 
-[node name="Win Screen" type="MarginContainer" parent="." unique_id=1719190761]
+[node name="WinScreen" type="MarginContainer" parent="." unique_id=1719190761]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -40,7 +42,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Win Screen" unique_id=494603209]
+[node name="NinePatchRect" type="NinePatchRect" parent="WinScreen" unique_id=494603209]
 layout_mode = 2
 texture = ExtResource("1_pn66h")
 region_rect = Rect2(0, 0, 5, 5)
@@ -49,29 +51,78 @@ patch_margin_top = 2
 patch_margin_right = 2
 patch_margin_bottom = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Win Screen" unique_id=1226324357]
+[node name="MarginContainer" type="MarginContainer" parent="WinScreen" unique_id=1226324357]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Win Screen/MarginContainer" unique_id=1491450731]
+[node name="VBoxContainer" type="VBoxContainer" parent="WinScreen/MarginContainer" unique_id=1491450731]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Win Screen/MarginContainer/VBoxContainer" unique_id=1721945712]
+[node name="Label" type="Label" parent="WinScreen/MarginContainer/VBoxContainer" unique_id=1721945712]
 layout_mode = 2
 text = "Level Won!"
 label_settings = ExtResource("2_ggnqm")
 horizontal_alignment = 1
 
-[node name="NextLevelButton" type="Button" parent="Win Screen/MarginContainer/VBoxContainer" unique_id=1275900517]
+[node name="NextLevelButton" type="Button" parent="WinScreen/MarginContainer/VBoxContainer" unique_id=1275900517]
 layout_mode = 2
 text = "Continue"
 
-[node name="LevelSelectButton" type="Button" parent="Win Screen/MarginContainer/VBoxContainer" unique_id=2118567997]
+[node name="LevelSelectButton" type="Button" parent="WinScreen/MarginContainer/VBoxContainer" unique_id=2118567997]
 layout_mode = 2
 text = "Level Select"
 
-[connection signal="pressed" from="Win Screen/MarginContainer/VBoxContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
-[connection signal="pressed" from="Win Screen/MarginContainer/VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
+[node name="PauseScreen" type="MarginContainer" parent="." unique_id=1090253534]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseScreen" unique_id=1436156598]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PauseScreen/MarginContainer" unique_id=1004075511]
+layout_mode = 2
+texture = ExtResource("1_pn66h")
+region_rect = Rect2(0, 0, 5, 5)
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseScreen/MarginContainer" unique_id=1344950180]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseScreen/MarginContainer/MarginContainer" unique_id=1419423245]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseScreen/MarginContainer/MarginContainer/VBoxContainer" unique_id=863003808]
+layout_mode = 2
+text = "Pause"
+label_settings = ExtResource("2_ggnqm")
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="PauseScreen/MarginContainer/MarginContainer/VBoxContainer" unique_id=1856485389]
+layout_mode = 2
+text = "Continue"
+
+[node name="LevelSelectButton" type="Button" parent="PauseScreen/MarginContainer/MarginContainer/VBoxContainer" unique_id=786095612]
+layout_mode = 2
+text = "Level Select"
+
+[connection signal="pressed" from="WinScreen/MarginContainer/VBoxContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="WinScreen/MarginContainer/VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
+[connection signal="pressed" from="PauseScreen/MarginContainer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="PauseScreen/MarginContainer/MarginContainer/VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
