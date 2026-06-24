@@ -24,4 +24,5 @@ func _process(_delta: float) -> void:
 
 func _on_player_won() -> void:
 	SceneManager.unlock_next_level()
+	PlayerActions.reset_actions()
 	level_ui.win()

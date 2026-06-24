@@ -12,10 +12,21 @@ enum SpinDirections {CLOCKWISE, COUNTER_CLOCKWISE, HORIZONTAL, VERTICAL}
 
 var player: Player
 
-var up: Actions = Actions.MOVE_UP
-var down: Actions = Actions.MOVE_DOWN
-var left: Actions = Actions.MOVE_LEFT
-var right: Actions = Actions.MOVE_RIGHT
+var up: Actions
+var down: Actions
+var left: Actions
+var right: Actions
+
+
+func _ready() -> void:
+	reset_actions()
+
+
+func reset_actions() -> void:
+	up = Actions.MOVE_UP
+	down = Actions.MOVE_DOWN
+	left = Actions.MOVE_LEFT
+	right = Actions.MOVE_RIGHT
 
 
 func do_action(direction: Player.FacingDirections) -> void:
