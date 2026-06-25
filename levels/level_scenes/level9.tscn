@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://e8l0x17k1ob8"]
+
+[ext_resource type="Script" uid="uid://dyw7w4ggn77ko" path="res://levels/scripts/level.gd" id="1_mwue1"]
+[ext_resource type="PackedScene" uid="uid://cf2vnc2rs54lr" path="res://tilemap/tilemap.tscn" id="2_jn4tm"]
+[ext_resource type="PackedScene" uid="uid://dmrkm8hf1oqtt" path="res://controls/control_ui.tscn" id="3_ndyb6"]
+[ext_resource type="PackedScene" uid="uid://dsl0axpkvml2f" path="res://levels/level_ui.tscn" id="4_72pfh"]
+[ext_resource type="PackedScene" uid="uid://ci51e2m6thx53" path="res://player/player.tscn" id="5_obwmt"]
+[ext_resource type="PackedScene" uid="uid://cl2ng2mkdjnsw" path="res://tiles/scenes/facing_tile.tscn" id="6_fao43"]
+[ext_resource type="PackedScene" uid="uid://sp5626vpyl51" path="res://tiles/scenes/spin_tile.tscn" id="7_xvhus"]
+[ext_resource type="PackedScene" uid="uid://b5l10h52lr8tl" path="res://tiles/scenes/win_tile.tscn" id="8_qwrry"]
+
+[node name="Level" type="Node2D" unique_id=752026815]
+script = ExtResource("1_mwue1")
+metadata/_custom_type_script = "uid://dyw7w4ggn77ko"
+
+[node name="Tilemap" parent="." unique_id=1539137905 instance=ExtResource("2_jn4tm")]
+
+[node name="ControlUi" parent="." unique_id=1669422476 instance=ExtResource("3_ndyb6")]
+offset_top = 100.0
+offset_bottom = 144.0
+
+[node name="LevelUi" parent="." unique_id=763482785 instance=ExtResource("4_72pfh")]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 256.0
+offset_bottom = 144.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Player" parent="." unique_id=1769404413 instance=ExtResource("5_obwmt")]
+position = Vector2(64, 176)
+
+[node name="FacingTile" parent="." unique_id=1854367602 instance=ExtResource("6_fao43")]
+position = Vector2(112, 176)
+
+[node name="SpinTile" parent="." unique_id=1843618504 instance=ExtResource("7_xvhus")]
+position = Vector2(96, 176)
+
+[node name="WinTile" parent="." unique_id=1129835346 instance=ExtResource("8_qwrry")]
+position = Vector2(128, 176)
