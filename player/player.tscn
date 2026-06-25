@@ -181,6 +181,7 @@ shape = SubResource("RectangleShape2D_ljn27")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=623602752]
 unique_name_in_owner = true
+visible = false
 position = Vector2(8, 8)
 target_position = Vector2(0, 16)
 

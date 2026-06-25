@@ -1,4 +1,5 @@
 @tool
+class_name FacingTile
 extends StaticBody2D
 
 @export var direction: Player.FacingDirections = Player.FacingDirections.UP
@@ -15,6 +16,7 @@ func _ready() -> void:
 		old_direction = direction
 	
 	player = get_tree().get_first_node_in_group("player")
+	player.facing_direction_changed.connect(_on_player_facing_direction_changed)
 	
 	_set_direction()
 
@@ -25,7 +27,8 @@ func _process(_delta: float) -> void:
 			_set_direction()
 		old_direction = direction
 		return
-	
+
+func _on_player_facing_direction_changed() -> void:
 	var colliding := player.facing_direction != direction
 	if colliding:
 		modulate.a = 1

@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 signal won
+signal facing_direction_changed
 
 @export var speed: float = 0.3
 @export var win_bigger_speed: float = 1.05
@@ -28,7 +29,8 @@ var current_pos: Vector2i
 
 var is_spinning: bool = false
 
-var facing_direction: FacingDirections = FacingDirections.UP
+var facing_direction: FacingDirections = FacingDirections.UP:
+	set = _set_facing_direction
 var direction: Vector2i = Vector2i.ZERO:
 	set = _set_direction
 var moving: bool = false
@@ -124,6 +126,9 @@ func _stop_moving() -> void:
 
 
 func _can_move(target_pos: Vector2i) -> bool:
+	#var ray_collider: Object = ray.get_collider()
+	#ray_collider.get_collision_layer_value
+	
 	return not (
 			target_pos.x < 0 or
 			target_pos.y < 0 or 
@@ -185,6 +190,11 @@ func _handle_win_animation() -> void:
 
 func _on_win_anim_timer_timeout() -> void:
 	won.emit()
+
+
+func _set_facing_direction(new_facing_direction: FacingDirections) -> void:
+	facing_direction = new_facing_direction
+	facing_direction_changed.emit()
 
 
 ######### Actions

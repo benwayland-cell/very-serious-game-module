@@ -7,6 +7,7 @@
 size = Vector2(16, 16)
 
 [node name="FacingTile" type="StaticBody2D" unique_id=1854367602]
+collision_layer = 5
 collision_mask = 2
 script = ExtResource("1_icggo")
 
