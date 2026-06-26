@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bbv1xyasog5fk"]
 
 [ext_resource type="Script" uid="uid://6n0mvsanr7fk" path="res://menus/scripts/level_select.gd" id="1_u4icl"]
+[ext_resource type="LabelSettings" uid="uid://cfu86x4u6ac72" path="res://ui_presets/default_label_settings.tres" id="2_ebqc8"]
+[ext_resource type="PackedScene" uid="uid://c36ajs1qe5gfd" path="res://ui_presets/custom_button/custom_button.tscn" id="3_jq5xu"]
 
 [node name="LevelSelect" type="Control" unique_id=1752152173]
 layout_mode = 3
@@ -10,6 +12,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u4icl")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1411725980]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=757811528]
 layout_mode = 1
@@ -28,6 +39,7 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=895619983]
 layout_mode = 2
 text = "Level Select"
+label_settings = ExtResource("2_ebqc8")
 
 [node name="ButtonsVBox" type="VBoxContainer" parent="VBoxContainer" unique_id=1759198527]
 unique_name_in_owner = true
@@ -42,7 +54,8 @@ offset_bottom = 40.0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 
-[node name="BackButton" type="Button" parent="MarginContainer" unique_id=1328843600]
+[node name="BackButton" parent="MarginContainer" unique_id=1566600828 instance=ExtResource("3_jq5xu")]
+custom_maximum_size = Vector2(-1, 20)
 layout_mode = 2
 text = "Back"
 

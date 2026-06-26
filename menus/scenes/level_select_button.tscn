@@ -1,9 +1,22 @@
 [gd_scene format=3 uid="uid://bckp8stgtf3bs"]
 
+[ext_resource type="StyleBox" uid="uid://bkel865u5gamr" path="res://ui_presets/custom_button/button_style_normal.tres" id="1_5ms1u"]
+[ext_resource type="FontFile" uid="uid://dgom5h4ij8g01" path="res://ui_presets/Pix32.ttf" id="1_qhykc"]
 [ext_resource type="Script" uid="uid://34rx4ryuul3o" path="res://menus/scripts/level_select_button.gd" id="1_uky1q"]
+[ext_resource type="StyleBox" uid="uid://dfn1gd728iju" path="res://ui_presets/custom_button/button_style_pressed.tres" id="2_qhykc"]
+[ext_resource type="StyleBox" uid="uid://cqejvxqxyafwu" path="res://ui_presets/custom_button/button_style_hover.tres" id="3_oipkq"]
+[ext_resource type="StyleBox" uid="uid://badn6h1d3egjg" path="res://ui_presets/custom_button/button_style_disabled.tres" id="4_wi582"]
 
 [node name="LevelSelectButton" type="Button" unique_id=115588563]
 custom_minimum_size = Vector2(30, 30)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.39215687, 0.39215687, 0.39215687, 1)
+theme_override_fonts/font = ExtResource("1_qhykc")
+theme_override_styles/normal = ExtResource("1_5ms1u")
+theme_override_styles/pressed = ExtResource("2_qhykc")
+theme_override_styles/hover = ExtResource("3_oipkq")
+theme_override_styles/disabled = ExtResource("4_wi582")
+theme_override_styles/focus = ExtResource("3_oipkq")
 script = ExtResource("1_uky1q")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

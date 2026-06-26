@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cbjahlll63w76" path="res://levels/scripts/level_ui.gd" id="1_ggnqm"]
 [ext_resource type="Texture2D" uid="uid://b2g0tp64kqstb" path="res://ui_presets/Panel Outline.png" id="1_pn66h"]
 [ext_resource type="LabelSettings" uid="uid://cfu86x4u6ac72" path="res://ui_presets/default_label_settings.tres" id="2_ggnqm"]
+[ext_resource type="PackedScene" uid="uid://c36ajs1qe5gfd" path="res://ui_presets/custom_button/custom_button.tscn" id="4_fiuri"]
 
 [node name="LevelUi" type="Control" unique_id=763482785]
 process_mode = 3
@@ -114,15 +115,27 @@ text = "Pause"
 label_settings = ExtResource("2_ggnqm")
 horizontal_alignment = 1
 
-[node name="ContinueButton" type="Button" parent="PauseScreen/MarginContainer/MarginContainer/VBoxContainer" unique_id=1856485389]
+[node name="MarginContainer" type="MarginContainer" parent="PauseScreen/MarginContainer/MarginContainer/VBoxContainer" unique_id=464270504]
 layout_mode = 2
-text = "Continue"
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
 
-[node name="LevelSelectButton" type="Button" parent="PauseScreen/MarginContainer/MarginContainer/VBoxContainer" unique_id=786095612]
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseScreen/MarginContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=1674620468]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ContinueButton" parent="PauseScreen/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1566600828 instance=ExtResource("4_fiuri")]
+layout_mode = 2
+text = "Next Level
+"
+
+[node name="LevelSelectButton" parent="PauseScreen/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1642408589 instance=ExtResource("4_fiuri")]
 layout_mode = 2
 text = "Level Select"
 
 [connection signal="pressed" from="WinScreen/MarginContainer/VBoxContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
 [connection signal="pressed" from="WinScreen/MarginContainer/VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
-[connection signal="pressed" from="PauseScreen/MarginContainer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="PauseScreen/MarginContainer/MarginContainer/VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
+[connection signal="pressed" from="PauseScreen/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="PauseScreen/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
