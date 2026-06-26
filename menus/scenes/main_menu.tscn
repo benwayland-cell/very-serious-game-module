@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://wdwoj24cqxbm" path="res://menus/scripts/main_menu.gd" id="1_r3aaf"]
 [ext_resource type="LabelSettings" uid="uid://cfu86x4u6ac72" path="res://ui_presets/default_label_settings.tres" id="2_1ddq0"]
+[ext_resource type="PackedScene" uid="uid://c36ajs1qe5gfd" path="res://ui_presets/custom_button/custom_button.tscn" id="3_a2m5y"]
 
 [node name="MainMenu" type="Control" unique_id=1066621885]
 layout_mode = 3
@@ -11,6 +12,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r3aaf")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=208925656]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1565163830]
 layout_mode = 1
@@ -25,6 +35,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 6
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=1140387347]
@@ -33,11 +44,11 @@ text = "Main Menu"
 label_settings = ExtResource("2_1ddq0")
 horizontal_alignment = 1
 
-[node name="New-ContinueButton" type="Button" parent="VBoxContainer" unique_id=2106198669]
+[node name="New-ContinueButton" parent="VBoxContainer" unique_id=1566600828 instance=ExtResource("3_a2m5y")]
 layout_mode = 2
 text = "New Game"
 
-[node name="LevelSelectButton" type="Button" parent="VBoxContainer" unique_id=1906239945]
+[node name="LevelSelectButton" parent="VBoxContainer" unique_id=1619807586 instance=ExtResource("3_a2m5y")]
 layout_mode = 2
 text = "Level Select"
 

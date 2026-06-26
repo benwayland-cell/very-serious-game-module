@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c36ajs1qe5gfd"]
+
+[ext_resource type="FontFile" uid="uid://dgom5h4ij8g01" path="res://ui_presets/Pix32.ttf" id="1_unwdc"]
+[ext_resource type="StyleBox" uid="uid://bkel865u5gamr" path="res://ui_presets/custom_button/button_style_normal.tres" id="2_p3ab0"]
+[ext_resource type="StyleBox" uid="uid://dfn1gd728iju" path="res://ui_presets/custom_button/button_style_pressed.tres" id="3_v274n"]
+[ext_resource type="StyleBox" uid="uid://badn6h1d3egjg" path="res://ui_presets/custom_button/button_style_disabled.tres" id="4_v274n"]
+
+[sub_resource type="Theme" id="Theme_hhkev"]
+
+[node name="CustomButton" type="Button" unique_id=1566600828]
+theme = SubResource("Theme_hhkev")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_unwdc")
+theme_override_styles/normal = ExtResource("2_p3ab0")
+theme_override_styles/pressed = ExtResource("3_v274n")
+theme_override_styles/hover = ExtResource("3_v274n")
+theme_override_styles/disabled = ExtResource("4_v274n")
+text = "Lorem Ipsum"
