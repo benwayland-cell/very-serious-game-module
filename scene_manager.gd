@@ -9,10 +9,16 @@ var level_scenes: Array[PackedScene] = []
 
 
 var current_level: int = 0
-var last_unlocked_level: int = 1
+var last_unlocked_level: int = 1:
+	set = _set_last_unlocked_level
 
 
 func _ready() -> void:
+	_load_level_scenes()
+	load_game()
+
+
+func _load_level_scenes() -> void:
 	var current_num: int = 0
 	while true:
 		current_num += 1
@@ -51,3 +57,27 @@ func load_last_unlocked_level() -> void:
 
 func unlock_next_level() -> void:
 	last_unlocked_level = max(last_unlocked_level, current_level + 1)
+
+
+func _set_last_unlocked_level(new_last_unlocked_level: int) -> void:
+	last_unlocked_level = new_last_unlocked_level
+	save_game()
+
+
+# Note: This can be called from anywhere inside the tree. This function is
+# path independent.
+# Go through everything in the persist category and ask them to return a
+# dict of relevant variables.
+func save_game():
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	save_file.store_line(str(last_unlocked_level))
+
+
+func load_game():
+	if not FileAccess.file_exists("user://savegame.save"):
+		return # Error! We don't have a save to load.
+	
+	# Load the file line by line and process that dictionary to restore
+	# the object it represents.
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
+	last_unlocked_level = int(save_file.get_line())
