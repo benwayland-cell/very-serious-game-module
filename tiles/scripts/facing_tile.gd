@@ -23,10 +23,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
-		if direction != old_direction:
-			_set_direction()
-		old_direction = direction
-		return
+		_set_direction()
 
 func _on_player_facing_direction_changed() -> void:
 	var colliding := player.facing_direction != direction

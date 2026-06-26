@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://420xfjr34tdo"]
 
 [ext_resource type="Script" uid="uid://wdwoj24cqxbm" path="res://menus/scripts/main_menu.gd" id="1_r3aaf"]
+[ext_resource type="LabelSettings" uid="uid://cfu86x4u6ac72" path="res://ui_presets/default_label_settings.tres" id="2_1ddq0"]
 
 [node name="MainMenu" type="Control" unique_id=1066621885]
 layout_mode = 3
@@ -29,6 +30,7 @@ alignment = 1
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=1140387347]
 layout_mode = 2
 text = "Main Menu"
+label_settings = ExtResource("2_1ddq0")
 horizontal_alignment = 1
 
 [node name="New-ContinueButton" type="Button" parent="VBoxContainer" unique_id=2106198669]

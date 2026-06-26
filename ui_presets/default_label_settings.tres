@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://cfu86x4u6ac72"]
+
+[ext_resource type="FontFile" uid="uid://dgom5h4ij8g01" path="res://ui_presets/Pix32.ttf" id="1_1gaue"]
+
+[resource]
+font = ExtResource("1_1gaue")
+font_color = Color(0, 0, 0, 1)

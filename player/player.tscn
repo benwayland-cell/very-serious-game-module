@@ -171,7 +171,7 @@ script = ExtResource("1_rkbax")
 unique_name_in_owner = true
 position = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_ljn27")
-animation = &"up"
+animation = &"down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=976533581]
 unique_name_in_owner = true

@@ -29,7 +29,7 @@ var current_pos: Vector2i
 
 var is_spinning: bool = false
 
-var facing_direction: FacingDirections = FacingDirections.UP:
+var facing_direction: FacingDirections = FacingDirections.DOWN:
 	set = _set_facing_direction
 var direction: Vector2i = Vector2i.ZERO:
 	set = _set_direction

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dsl0axpkvml2f"]
 
 [ext_resource type="Script" uid="uid://cbjahlll63w76" path="res://levels/scripts/level_ui.gd" id="1_ggnqm"]
-[ext_resource type="Texture2D" uid="uid://b2g0tp64kqstb" path="res://Panel Outline.png" id="1_pn66h"]
-[ext_resource type="LabelSettings" uid="uid://cfu86x4u6ac72" path="res://default_label_settings.tres" id="2_ggnqm"]
+[ext_resource type="Texture2D" uid="uid://b2g0tp64kqstb" path="res://ui_presets/Panel Outline.png" id="1_pn66h"]
+[ext_resource type="LabelSettings" uid="uid://cfu86x4u6ac72" path="res://ui_presets/default_label_settings.tres" id="2_ggnqm"]
 
 [node name="LevelUi" type="Control" unique_id=763482785]
 process_mode = 3
