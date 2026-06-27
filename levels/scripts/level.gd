@@ -6,6 +6,7 @@ var player: Player
 
 
 func _ready() -> void:
+	PlayerActions.reset_actions()
 	player = get_tree().get_first_node_in_group("player")
 	
 	assert(player != null, "There is no player")
