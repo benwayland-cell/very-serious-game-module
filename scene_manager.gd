@@ -8,6 +8,15 @@ const CREDITS_SCENE: PackedScene = preload("uid://cktsdsotodvda")
 
 const LEVEL_PATH: String = "res://levels/level_scenes/level"
 
+var LEVEL_SCENE_PATHS: Array[String] = [
+	"res://levels/level_scenes/level1.tscn",
+	"res://levels/level_scenes/level2.tscn",
+	"res://levels/level_scenes/level3.tscn",
+	"res://levels/level_scenes/level4.tscn",
+	"res://levels/level_scenes/level5.tscn",
+	"res://levels/level_scenes/level6.tscn",
+] 
+
 var level_scenes: Array[PackedScene] = []
 
 
@@ -22,13 +31,16 @@ func _ready() -> void:
 
 
 func _load_level_scenes() -> void:
-	var current_num: int = 0
-	while true:
-		current_num += 1
-		var current_level_path := LEVEL_PATH + str(current_num) + ".tscn"
-		if not FileAccess.file_exists(current_level_path):
-			break
-		level_scenes.append(load(current_level_path))
+	for path: String in LEVEL_SCENE_PATHS:
+		level_scenes.append(load(path))
+	
+	#var current_num: int = 0
+	#while true:
+		#current_num += 1
+		#var current_level_path := LEVEL_PATH + str(current_num) + ".tscn"
+		#if not FileAccess.file_exists(current_level_path):
+			#break
+		#level_scenes.append(load(current_level_path))
 
 
 func hide_mouse() -> void:
