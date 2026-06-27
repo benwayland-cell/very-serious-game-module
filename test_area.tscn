@@ -35,7 +35,7 @@ position = Vector2(112, 64)
 
 [node name="SpinTile" parent="." unique_id=1843618504 instance=ExtResource("7_6ii2q")]
 position = Vector2(64, 16)
-spin_direction = 1
+spin_direction = 2
 
 [node name="WinTile" parent="." unique_id=1129835346 instance=ExtResource("6_xdpsd")]
 position = Vector2(32, 64)

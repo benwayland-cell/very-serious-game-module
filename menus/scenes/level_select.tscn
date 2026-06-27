@@ -12,6 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u4icl")
+wrap_num = 3
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1411725980]
 layout_mode = 1
