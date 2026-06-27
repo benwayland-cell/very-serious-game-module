@@ -2,6 +2,7 @@ extends Node
 
 const MAIN_MENU_SCENE: PackedScene = preload("uid://420xfjr34tdo")
 const LEVEL_SELECT_SCENE: PackedScene = preload("uid://bbv1xyasog5fk")
+const LORE_TEXT_SCENE: PackedScene = preload("uid://k7ikhbvhbd5r")
 
 const LEVEL_PATH: String = "res://levels/level_scenes/level"
 
@@ -9,7 +10,7 @@ var level_scenes: Array[PackedScene] = []
 
 
 var current_level: int = 0
-var last_unlocked_level: int = 1:
+var last_unlocked_level: int = 0:
 	set = _set_last_unlocked_level
 
 
@@ -39,7 +40,10 @@ func load_level_select() -> void:
 
 
 func load_level(level_num: int) -> void:
-	if level_num <= 0 or level_num > level_scenes.size():
+	if level_num == 0:
+		get_tree().change_scene_to_packed(LORE_TEXT_SCENE)
+		return
+	if level_num < 0 or level_num > level_scenes.size():
 		load_main_menu_scene()
 		return
 	
