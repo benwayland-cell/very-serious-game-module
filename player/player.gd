@@ -64,10 +64,10 @@ func _process(_delta: float) -> void:
 		_handle_win_animation()
 		return
 	
-	if Input.is_action_just_pressed("debug1"):
-		PlayerActions.move_clockwise()
-	if Input.is_action_just_pressed("debug2"):
-		PlayerActions.move_counter_clockwise()
+	#if Input.is_action_just_pressed("debug1"):
+		#PlayerActions.move_clockwise()
+	#if Input.is_action_just_pressed("debug2"):
+		#PlayerActions.move_counter_clockwise()
 	
 	if is_spinning:
 		return

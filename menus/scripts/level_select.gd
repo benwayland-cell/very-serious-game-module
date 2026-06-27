@@ -10,6 +10,7 @@ const LEVEL_SELECT_BUTTON_SCENE: PackedScene = preload("uid://bckp8stgtf3bs")
 func _ready() -> void:
 	var current_h_box_container: HBoxContainer
 	
+	# Make a button for every level
 	for level_num: int in range(1, SceneManager.level_scenes.size() + 1):
 		if (level_num - 1) % wrap_num == 0:
 			current_h_box_container = HBoxContainer.new()
@@ -18,6 +19,10 @@ func _ready() -> void:
 		var new_button: LevelSelectButton = LEVEL_SELECT_BUTTON_SCENE.instantiate()
 		new_button.level_num = level_num
 		current_h_box_container.add_child(new_button)
+	
+	# enable the first level
+	var first_level_button: Button = buttons_v_box.get_child(0).get_child(0)
+	first_level_button.disabled = false
 
 
 func _on_back_button_pressed() -> void:

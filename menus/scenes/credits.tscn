@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://cktsdsotodvda"]
+
+[ext_resource type="Script" uid="uid://cuc1aqs7nr75" path="res://menus/scripts/credits.gd" id="1_kp7m1"]
+[ext_resource type="Texture2D" uid="uid://b2g0tp64kqstb" path="res://ui_presets/Panel Outline.png" id="2_b2ycx"]
+[ext_resource type="FontFile" uid="uid://dgom5h4ij8g01" path="res://ui_presets/Pix32.ttf" id="3_2ox7f"]
+[ext_resource type="PackedScene" uid="uid://c36ajs1qe5gfd" path="res://ui_presets/custom_button/custom_button.tscn" id="4_0k2vd"]
+
+[node name="Credits" type="Control" unique_id=480976356]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kp7m1")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=913713598]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=431435020]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer" unique_id=1795909964]
+layout_mode = 2
+texture = ExtResource("2_b2ycx")
+region_rect = Rect2(0, 0, 5, 5)
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=1044098746]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer" unique_id=1409128087]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=127053873]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=217123994]
+custom_minimum_size = Vector2(100, 55)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_2ox7f")
+theme_override_fonts/bold_font = ExtResource("3_2ox7f")
+theme_override_fonts/bold_italics_font = ExtResource("3_2ox7f")
+theme_override_fonts/italics_font = ExtResource("3_2ox7f")
+theme_override_fonts/mono_font = ExtResource("3_2ox7f")
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 10
+bbcode_enabled = true
+text = "[b]Game Development[/b]
+Ben Wayland
+
+[b]Sound Design[/b]
+N/A"
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=833086694]
+custom_minimum_size = Vector2(100, 10)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_2ox7f")
+theme_override_fonts/bold_font = ExtResource("3_2ox7f")
+theme_override_fonts/bold_italics_font = ExtResource("3_2ox7f")
+theme_override_fonts/italics_font = ExtResource("3_2ox7f")
+theme_override_fonts/mono_font = ExtResource("3_2ox7f")
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 10
+bbcode_enabled = true
+text = "[b]Art[/b]
+Ben Wayland
+
+[b]Everything[/b]
+Ben Wayland"
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="MainMenuButton" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=1566600828 instance=ExtResource("4_0k2vd")]
+layout_mode = 2
+text = "Continue
+"
+
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

@@ -26,10 +26,12 @@ func _process(_delta: float) -> void:
 
 
 func win() -> void:
+	SceneManager.show_mouse()
 	win_screen.show()
 
 
 func pause() -> void:
+	SceneManager.show_mouse()
 	paused = true
 	first_frame_of_pause = true
 	dimmer.show()
@@ -38,6 +40,7 @@ func pause() -> void:
 
 
 func _on_continue_button_pressed() -> void:
+	SceneManager.hide_mouse()
 	get_tree().paused = false
 	dimmer.hide()
 	win_screen.hide()

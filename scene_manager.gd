@@ -3,6 +3,8 @@ extends Node
 const MAIN_MENU_SCENE: PackedScene = preload("uid://420xfjr34tdo")
 const LEVEL_SELECT_SCENE: PackedScene = preload("uid://bbv1xyasog5fk")
 const LORE_TEXT_SCENE: PackedScene = preload("uid://k7ikhbvhbd5r")
+const WIN_TEXT_SCENE: PackedScene = preload("uid://co4gsrqw0umsl")
+const CREDITS_SCENE: PackedScene = preload("uid://cktsdsotodvda")
 
 const LEVEL_PATH: String = "res://levels/level_scenes/level"
 
@@ -29,24 +31,47 @@ func _load_level_scenes() -> void:
 		level_scenes.append(load(current_level_path))
 
 
+func hide_mouse() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+
+
+func show_mouse() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+
 func load_main_menu_scene() -> void:
 	current_level = 0
+	show_mouse()
 	get_tree().change_scene_to_packed(MAIN_MENU_SCENE)
 
 
 func load_level_select() -> void:
 	current_level = 0
+	show_mouse()
 	get_tree().change_scene_to_packed(LEVEL_SELECT_SCENE)
 
 
+func load_credits() -> void:
+	current_level = 0
+	show_mouse()
+	get_tree().change_scene_to_packed(CREDITS_SCENE)
+
+
 func load_level(level_num: int) -> void:
+	show_mouse()
 	if level_num == 0:
 		get_tree().change_scene_to_packed(LORE_TEXT_SCENE)
 		return
+	
+	if level_num == level_scenes.size() + 1:
+		get_tree().change_scene_to_packed(WIN_TEXT_SCENE)
+		return
+	
 	if level_num < 0 or level_num > level_scenes.size():
 		load_main_menu_scene()
 		return
 	
+	hide_mouse()
 	current_level = level_num
 	get_tree().change_scene_to_packed(level_scenes[level_num - 1])
 
@@ -60,18 +85,17 @@ func load_last_unlocked_level() -> void:
 
 
 func unlock_next_level() -> void:
-	last_unlocked_level = max(last_unlocked_level, current_level + 1)
+	last_unlocked_level = min(
+			max(last_unlocked_level, current_level + 1),
+			level_scenes.size() + 1
+		)
 
 
 func _set_last_unlocked_level(new_last_unlocked_level: int) -> void:
-	last_unlocked_level = new_last_unlocked_level
+	last_unlocked_level = min(new_last_unlocked_level, level_scenes.size())
 	save_game()
 
 
-# Note: This can be called from anywhere inside the tree. This function is
-# path independent.
-# Go through everything in the persist category and ask them to return a
-# dict of relevant variables.
 func save_game():
 	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
 	save_file.store_line(str(last_unlocked_level))

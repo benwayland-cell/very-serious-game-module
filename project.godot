@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Very Serious Title TBD"
+config/name="The Dizzy Master"
 run/main_scene="uid://420xfjr34tdo"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://cjgjb4ymycev5"
 
 [autoload]
 

@@ -16,3 +16,7 @@ func _on_level_select_button_pressed() -> void:
 func _on_custom_button_pressed() -> void:
 	SceneManager.last_unlocked_level = 0
 	%"New-ContinueButton".text = "New Game"
+
+
+func _on_credits_pressed() -> void:
+	SceneManager.load_credits()

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://wdwoj24cqxbm" path="res://menus/scripts/main_menu.gd" id="1_r3aaf"]
 [ext_resource type="LabelSettings" uid="uid://cfu86x4u6ac72" path="res://ui_presets/default_label_settings.tres" id="2_1ddq0"]
+[ext_resource type="Texture2D" uid="uid://cp0ngtkaicyvx" path="res://icon.png" id="2_5um5d"]
 [ext_resource type="PackedScene" uid="uid://c36ajs1qe5gfd" path="res://ui_presets/custom_button/custom_button.tscn" id="3_a2m5y"]
 
 [node name="MainMenu" type="Control" unique_id=1066621885]
@@ -22,41 +23,57 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1565163830]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1639546574]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=363663709]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=184352524]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+texture = ExtResource("2_5um5d")
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1565163830]
+layout_mode = 2
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=1140387347]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1140387347]
 layout_mode = 2
-text = "Main Menu"
+text = "The Dizzy Master"
 label_settings = ExtResource("2_1ddq0")
 horizontal_alignment = 1
 
-[node name="New-ContinueButton" parent="VBoxContainer" unique_id=1566600828 instance=ExtResource("3_a2m5y")]
+[node name="New-ContinueButton" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1566600828 instance=ExtResource("3_a2m5y")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "New Game"
 
-[node name="LevelSelectButton" parent="VBoxContainer" unique_id=1619807586 instance=ExtResource("3_a2m5y")]
+[node name="LevelSelectButton" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1619807586 instance=ExtResource("3_a2m5y")]
 layout_mode = 2
 text = "Level Select"
 
-[node name="CustomButton" parent="VBoxContainer" unique_id=1113624448 instance=ExtResource("3_a2m5y")]
+[node name="Credits" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1320154285 instance=ExtResource("3_a2m5y")]
+layout_mode = 2
+text = "Credits"
+
+[node name="CustomButton" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1113624448 instance=ExtResource("3_a2m5y")]
 layout_mode = 2
 text = "Reset Save"
 
-[connection signal="pressed" from="VBoxContainer/New-ContinueButton" to="." method="_on_new_continue_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/CustomButton" to="." method="_on_custom_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/New-ContinueButton" to="." method="_on_new_continue_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/CustomButton" to="." method="_on_custom_button_pressed"]
