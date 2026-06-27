@@ -8,6 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://cl2ng2mkdjnsw" path="res://tiles/scenes/facing_tile.tscn" id="6_3xlhd"]
 [ext_resource type="PackedScene" uid="uid://sp5626vpyl51" path="res://tiles/scenes/spin_tile.tscn" id="7_13ups"]
 [ext_resource type="PackedScene" uid="uid://b5l10h52lr8tl" path="res://tiles/scenes/win_tile.tscn" id="8_n86ab"]
+[ext_resource type="FontFile" uid="uid://dgom5h4ij8g01" path="res://ui_presets/Pix32.ttf" id="9_6diw3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vx6g7"]
+font = ExtResource("9_6diw3")
 
 [node name="Level" type="Node2D" unique_id=752026815]
 script = ExtResource("1_gy05f")
@@ -60,3 +64,11 @@ spin_direction = 3
 
 [node name="WinTile" parent="." unique_id=1129835346 instance=ExtResource("8_n86ab")]
 position = Vector2(176, 32)
+
+[node name="Label" type="Label" parent="." unique_id=1803107092]
+offset_left = 128.0
+offset_top = 96.0
+offset_right = 253.0
+offset_bottom = 119.0
+text = "Press R to Reset"
+label_settings = SubResource("LabelSettings_vx6g7")
