@@ -68,11 +68,23 @@ text = "Level Won!"
 label_settings = ExtResource("2_ggnqm")
 horizontal_alignment = 1
 
-[node name="NextLevelButton" type="Button" parent="WinScreen/MarginContainer/VBoxContainer" unique_id=1275900517]
+[node name="MarginContainer" type="MarginContainer" parent="WinScreen/MarginContainer/VBoxContainer" unique_id=2023118734]
 layout_mode = 2
-text = "Continue"
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
 
-[node name="LevelSelectButton" type="Button" parent="WinScreen/MarginContainer/VBoxContainer" unique_id=2118567997]
+[node name="VBoxContainer" type="VBoxContainer" parent="WinScreen/MarginContainer/VBoxContainer/MarginContainer" unique_id=1873396401]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="NextLevelButton" parent="WinScreen/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1566600828 instance=ExtResource("4_fiuri")]
+layout_mode = 2
+text = "Next Level
+"
+
+[node name="LevelSelectButton" parent="WinScreen/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1938229474 instance=ExtResource("4_fiuri")]
 layout_mode = 2
 text = "Level Select"
 
@@ -126,16 +138,15 @@ theme_override_constants/margin_bottom = 2
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="ContinueButton" parent="PauseScreen/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1566600828 instance=ExtResource("4_fiuri")]
+[node name="ContinueButton" parent="PauseScreen/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1024253059 instance=ExtResource("4_fiuri")]
 layout_mode = 2
-text = "Next Level
-"
+text = "Continue"
 
 [node name="LevelSelectButton" parent="PauseScreen/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1642408589 instance=ExtResource("4_fiuri")]
 layout_mode = 2
 text = "Level Select"
 
-[connection signal="pressed" from="WinScreen/MarginContainer/VBoxContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
-[connection signal="pressed" from="WinScreen/MarginContainer/VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
+[connection signal="pressed" from="WinScreen/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="WinScreen/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
 [connection signal="pressed" from="PauseScreen/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="PauseScreen/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
