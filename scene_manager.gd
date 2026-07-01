@@ -28,6 +28,10 @@ var last_unlocked_level: int = 0:
 func _ready() -> void:
 	_load_level_scenes()
 	load_game()
+	
+	# debug
+	if Input.is_action_just_pressed("debug1"):
+		last_unlocked_level = level_scenes.size()
 
 
 func _load_level_scenes() -> void:
